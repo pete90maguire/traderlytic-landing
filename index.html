@@ -3,69 +3,397 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Traderlytic — Trading Analytics Dashboard</title>
-  <meta name="description" content="Elevate Your Edge with Analytics. Professional trading journal and analytics platform. Coming soon.">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230c0d12'/%3E%3Crect x='8' y='6' width='4' height='20' rx='2' fill='%2300d4aa'/%3E%3Crect x='14' y='10' width='4' height='16' rx='2' fill='%2300b4ff'/%3E%3Crect x='20' y='4' width='4' height='18' rx='2' fill='%2300d4aa'/%3E%3C/svg%3E">
+  <title>Traderlytic — Elevate Your Trading with Analytics</title>
+  <meta name="description" content="Professional trading journal and analytics platform. Coming soon.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+    :root {
+      --bg: #0c0d12;
+      --accent: #00b4ff;
+      --teal: #00d4aa;
+      --muted: #8a8f9e;
+      --text: #e8eaef;
+      --subtle: #181a22;
+      --border: #1a1c25;
+    }
+
+    html, body { height: 100%; }
+
     body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #0c0d12;
+      background: var(--bg);
       font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top accent border */
+    .top-accent {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--teal), transparent);
+      z-index: 50;
+      opacity: 0.5;
+    }
+
+    /* Aurora — shifted to the right to create asymmetric weight */
+    .aurora {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
       overflow: hidden;
     }
 
-    .container {
-      text-align: center;
-      animation: fadeIn 1.2s ease-out;
-    }
-
-    .icon {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 32px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease-out 0.2s forwards;
-    }
-
-    .logo {
-      font-size: 48px;
-      letter-spacing: -0.01em;
-      margin-bottom: 24px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease-out 0.4s forwards;
-    }
-
-    .logo-accent { font-weight: 800; color: #00b4ff; }
-    .logo-muted { font-weight: 300; color: #8a8f9e; }
-
-    .tagline {
-      font-size: 18px;
-      font-weight: 400;
-      color: #555a68;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      opacity: 0;
-      animation: fadeUp 0.8s ease-out 0.6s forwards;
-    }
-
-    /* Subtle glow behind the icon */
-    .glow {
+    .aurora-blob {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -60%);
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(0, 180, 255, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(130px);
+    }
+
+    .a-1 {
+      width: 500px;
+      height: 500px;
+      background: rgba(0, 180, 255, 0.09);
+      top: -5%;
+      right: -5%;
+      animation: aDrift 22s ease-in-out infinite alternate;
+    }
+
+    .a-2 {
+      width: 400px;
+      height: 350px;
+      background: rgba(0, 212, 170, 0.06);
+      top: 40%;
+      right: 10%;
+      animation: aDrift2 26s ease-in-out infinite alternate;
+    }
+
+    .a-3 {
+      width: 350px;
+      height: 350px;
+      background: rgba(0, 180, 255, 0.04);
+      bottom: -10%;
+      right: 25%;
+      animation: aDrift3 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes aDrift { 0% { transform: translate(0, 0); } 100% { transform: translate(-20px, 30px); } }
+    @keyframes aDrift2 { 0% { transform: translate(0, 0); } 100% { transform: translate(15px, -20px); } }
+    @keyframes aDrift3 { 0% { transform: translate(0, 0); } 100% { transform: translate(-10px, -15px); } }
+
+    /* Grain */
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.02;
       pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Main layout — centered */
+    .main {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 4rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-logo {
+      font-size: clamp(3.5rem, 9vw, 6rem);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: revealUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.35s forwards;
+    }
+
+    .hero-logo .a { font-weight: 800; color: var(--accent); }
+    .hero-logo .m { font-weight: 200; color: var(--muted); }
+
+    /* Chart line between logo and tagline */
+    .chart-visual {
+      width: 100%;
+      max-width: 480px;
+      height: 100px;
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      animation: revealUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.45s forwards;
+    }
+
+    .chart-line {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      animation: drawLine 2s ease-in-out 0.8s forwards;
+    }
+
+    .chart-glow {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.15;
+      filter: blur(4px);
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      animation: drawLine 2s ease-in-out 0.8s forwards;
+    }
+
+    .chart-area {
+      fill: url(#chartGrad);
+      opacity: 0;
+      animation: fadeIn 0.8s ease 2.2s forwards;
+    }
+
+    .chart-dot {
+      fill: var(--accent);
+      opacity: 0;
+      animation: fadeIn 0.3s ease 2.6s forwards;
+    }
+
+    .chart-dot-ring {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 1;
+      opacity: 0;
+      animation: fadeIn 0.3s ease 2.6s forwards, ringPulse 2s ease-in-out 2.6s infinite;
+    }
+
+    @keyframes drawLine {
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes ringPulse {
+      0% { r: 3; opacity: 0.6; }
+      100% { r: 12; opacity: 0; }
+    }
+
+    .hero-title {
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      font-weight: 200;
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+      color: rgba(232, 234, 239, 0.7);
+      max-width: 500px;
+      margin-bottom: 4rem;
+      opacity: 0;
+      animation: revealUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
+    }
+
+    .hero-title strong {
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .hero-title em {
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    /* Stats row */
+    .stats {
+      display: flex;
+      gap: 4rem;
+      margin-bottom: 4rem;
+      opacity: 0;
+      animation: revealUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.7s forwards;
+    }
+
+    .stat {
+      position: relative;
+    }
+
+    .stat:not(:first-child)::before {
+      content: '';
+      position: absolute;
+      left: -1.75rem;
+      top: 15%;
+      height: 70%;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .stat-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .stat-value .highlight {
+      color: var(--teal);
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    /* Coming soon — pill badge below form */
+    .coming-soon {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.5rem 1.4rem;
+      border: 1px solid rgba(0, 212, 170, 0.15);
+      border-radius: 100px;
+      background: rgba(0, 212, 170, 0.04);
+      opacity: 0;
+      animation: revealUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) 1s forwards;
+    }
+
+    .coming-soon::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: var(--teal);
+      border-radius: 50%;
+      box-shadow: 0 0 6px rgba(0, 212, 170, 0.5);
+      animation: pulse 2.5s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    /* Bottom group — stats + form share same width */
+    .bottom-group {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .waitlist {
+      display: flex;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: revealUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.85s forwards;
+    }
+
+    .waitlist input {
+      flex: 1;
+      padding: 0.85rem 1.2rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      outline: none;
+      transition: all 0.35s ease;
+    }
+
+    .waitlist input::placeholder {
+      color: rgba(138, 143, 158, 0.35);
+    }
+
+    .waitlist input:focus {
+      border-color: rgba(0, 180, 255, 0.25);
+      box-shadow: 0 0 0 3px rgba(0, 180, 255, 0.04);
+    }
+
+    .waitlist button {
+      padding: 0.85rem 1.8rem;
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      color: var(--bg);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .waitlist button:hover {
+      box-shadow: 0 4px 24px rgba(0, 180, 255, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .waitlist button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Success / error messages */
+    .form-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+
+    .form-message {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .form-message.visible {
+      opacity: 1;
+    }
+
+    .form-message.success {
+      color: var(--teal);
+    }
+
+    .form-message.error {
+      color: #ff6b6b;
+    }
+
+    @keyframes revealLeft {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes fadeIn {
@@ -73,38 +401,123 @@
       to { opacity: 1; }
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
+    @media (max-width: 768px) {
+      .main { padding: 0 2rem; }
+      .stats { gap: 2.5rem; flex-wrap: wrap; }
+      .stat:not(:first-child)::before { display: none; }
+      .waitlist { flex-direction: column; }
     }
 
     @media (max-width: 480px) {
-      .icon { width: 60px; height: 60px; margin-bottom: 24px; }
-      .logo { font-size: 36px; }
-      .tagline { font-size: 14px; }
+      .main { padding: 0 1.5rem; }
+      .chart-visual { max-width: 100%; height: 70px; }
     }
   </style>
 </head>
 <body>
-  <div class="glow"></div>
-  <div class="container">
-    <div class="icon">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%">
-        <rect x="8" y="6" width="4" height="20" rx="2" fill="#00d4aa"/>
-        <rect x="14" y="10" width="4" height="16" rx="2" fill="#00b4ff"/>
-        <rect x="20" y="4" width="4" height="18" rx="2" fill="#00d4aa"/>
-        <line x1="10" y1="4" x2="10" y2="6" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="10" y1="26" x2="10" y2="28" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="16" y1="8" x2="16" y2="10" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="16" y1="26" x2="16" y2="28" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="22" y1="2" x2="22" y2="4" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="22" y1="22" x2="22" y2="24" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/>
+  <div class="top-accent"></div>
+  <div class="aurora">
+    <div class="aurora-blob a-1"></div>
+    <div class="aurora-blob a-2"></div>
+    <div class="aurora-blob a-3"></div>
+  </div>
+  <div class="grain"></div>
+
+  <div class="main">
+    <div class="hero-logo">
+      <span class="a">trader</span><span class="m">lytic</span>
+    </div>
+
+    <div class="chart-visual">
+      <svg viewBox="0 0 420 80" preserveAspectRatio="none" width="100%" height="100%">
+        <defs>
+          <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(0,180,255,0.1)" />
+            <stop offset="100%" stop-color="rgba(0,180,255,0)" />
+          </linearGradient>
+        </defs>
+        <path class="chart-area" d="M0,55 C25,52 50,58 80,48 C110,38 130,45 160,35 C190,25 210,32 240,22 C270,12 290,28 320,18 C350,8 370,14 400,10 L400,80 L0,80 Z" />
+        <path class="chart-glow" d="M0,55 C25,52 50,58 80,48 C110,38 130,45 160,35 C190,25 210,32 240,22 C270,12 290,28 320,18 C350,8 370,14 400,10" />
+        <path class="chart-line" d="M0,55 C25,52 50,58 80,48 C110,38 130,45 160,35 C190,25 210,32 240,22 C270,12 290,28 320,18 C350,8 370,14 400,10" />
+        <circle class="chart-dot" cx="400" cy="10" r="3" />
+        <circle class="chart-dot-ring" cx="400" cy="10" r="3" />
       </svg>
     </div>
-    <div class="logo">
-      <span class="logo-accent">trader</span><span class="logo-muted">lytic</span>
+
+    <h1 class="hero-title">
+      Elevate Your <strong>Trading</strong> with <em>Analytics</em>
+    </h1>
+
+    <div class="bottom-group">
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-value"><span class="highlight">67%</span></div>
+          <div class="stat-label">Win Rate</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">2.4</div>
+          <div class="stat-label">Profit Factor</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value"><span class="highlight">1:3</span></div>
+          <div class="stat-label">Avg R:R</div>
+        </div>
+      </div>
+
+      <div class="form-wrapper">
+        <form class="waitlist" id="waitlist-form">
+          <input type="email" id="email-input" placeholder="your@email.com" autocomplete="email" spellcheck="false" required>
+          <button type="submit" id="submit-btn">Get Early Access</button>
+        </form>
+        <div class="form-message" id="form-message"></div>
+      </div>
     </div>
-    <p class="tagline">Coming Soon</p>
+
+    <div class="coming-soon">Coming Soon</div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script>
+    const { createClient } = supabase;
+    const sb = createClient(
+      'https://loffjqduakyjgqtgzujt.supabase.co',
+      'sb_publishable_KXLtsgOzsDyxLkUjTEK7kw_RONX_ZIM'
+    );
+
+    const form = document.getElementById('waitlist-form');
+    const input = document.getElementById('email-input');
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('form-message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = input.value.trim().toLowerCase();
+      if (!email) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+      msg.className = 'form-message';
+      msg.textContent = '';
+
+      const { error } = await sb.from('waitlist_signups').insert({ email });
+
+      if (error) {
+        if (error.code === '23505') {
+          msg.textContent = "You're already on the list — we'll be in touch!";
+          msg.className = 'form-message success visible';
+        } else {
+          msg.textContent = 'Something went wrong. Please try again.';
+          msg.className = 'form-message error visible';
+        }
+        btn.disabled = false;
+        btn.textContent = 'Get Early Access';
+        return;
+      }
+
+      form.style.display = 'none';
+      msg.textContent = "You're in! We'll notify you when we launch.";
+      msg.className = 'form-message success visible';
+    });
+  </script>
 </body>
 </html>
