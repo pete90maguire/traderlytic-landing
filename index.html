@@ -451,15 +451,15 @@
     <div class="bottom-group">
       <div class="stats">
         <div class="stat">
-          <div class="stat-value"><span class="highlight">67%</span></div>
+          <div class="stat-value"><span class="highlight" data-target="67" data-suffix="%" data-decimals="0">0%</span></div>
           <div class="stat-label">Win Rate</div>
         </div>
         <div class="stat">
-          <div class="stat-value">2.4</div>
+          <div class="stat-value"><span data-target="2.4" data-suffix="" data-decimals="1">0.0</span></div>
           <div class="stat-label">Profit Factor</div>
         </div>
         <div class="stat">
-          <div class="stat-value"><span class="highlight">1:3</span></div>
+          <div class="stat-value"><span class="highlight" data-target="3" data-prefix="1:" data-suffix="" data-decimals="0">1:0</span></div>
           <div class="stat-label">Avg R:R</div>
         </div>
       </div>
@@ -475,6 +475,53 @@
 
     <div class="coming-soon">Coming Soon</div>
   </div>
+
+  <script>
+    // Scramble → count-up number reveal
+    function revealValue(el, target, decimals, prefix, suffix, delay) {
+      const scrambleDur = 300;
+      const countDur = 800;
+
+      setTimeout(() => {
+        const start = performance.now();
+
+        function tick(now) {
+          const elapsed = now - start;
+
+          if (elapsed < scrambleDur) {
+            // Scramble phase — random digits
+            const digits = String(Math.round(target)).length;
+            let scrambled = '';
+            for (let i = 0; i < digits; i++) scrambled += Math.floor(Math.random() * 10);
+            if (decimals > 0) scrambled = scrambled + '.' + Math.floor(Math.random() * 10);
+            el.textContent = prefix + scrambled + suffix;
+            requestAnimationFrame(tick);
+          } else if (elapsed < scrambleDur + countDur) {
+            // Count-up phase — ease-out cubic
+            const t = (elapsed - scrambleDur) / countDur;
+            const eased = 1 - Math.pow(1 - t, 3);
+            const current = target * eased;
+            el.textContent = prefix + current.toFixed(decimals) + suffix;
+            requestAnimationFrame(tick);
+          } else {
+            // Settled
+            el.textContent = prefix + target.toFixed(decimals) + suffix;
+          }
+        }
+
+        requestAnimationFrame(tick);
+      }, delay);
+    }
+
+    // Kick off after the stats animate in (0.7s animation delay + ~200ms buffer)
+    document.querySelectorAll('[data-target]').forEach((el, i) => {
+      const target = parseFloat(el.dataset.target);
+      const decimals = parseInt(el.dataset.decimals) || 0;
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      revealValue(el, target, decimals, prefix, suffix, 900 + i * 150);
+    });
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script>
