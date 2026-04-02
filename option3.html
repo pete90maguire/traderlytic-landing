@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traderlytic — Elevate Your Trading with Analytics</title>
+  <meta name="description" content="Professional trading journal and analytics platform. Coming soon.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0c0d12;
+      --accent: #00b4ff;
+      --teal: #00d4aa;
+      --muted: #8a8f9e;
+      --text: #e2e4e9;
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.06);
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      font-family: 'Outfit', sans-serif;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+    }
+
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      background: rgba(0, 180, 255, 0.2);
+      top: -100px;
+      right: 10%;
+      animation: orbFloat1 15s ease-in-out infinite;
+    }
+
+    .orb-2 {
+      width: 350px;
+      height: 350px;
+      background: rgba(0, 212, 170, 0.15);
+      bottom: -80px;
+      left: 5%;
+      animation: orbFloat2 18s ease-in-out infinite;
+    }
+
+    .orb-3 {
+      width: 250px;
+      height: 250px;
+      background: rgba(0, 180, 255, 0.1);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: orbFloat3 12s ease-in-out infinite;
+    }
+
+    @keyframes orbFloat1 {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(-40px, 60px); }
+      66% { transform: translate(30px, -20px); }
+    }
+
+    @keyframes orbFloat2 {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(50px, -40px); }
+      66% { transform: translate(-30px, 30px); }
+    }
+
+    @keyframes orbFloat3 {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.4); }
+    }
+
+    /* Glass card */
+    .card {
+      position: relative;
+      z-index: 10;
+      width: min(520px, 90vw);
+      padding: 3.5rem 3rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.96) translateY(20px);
+      animation: cardReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 25px;
+      padding: 1px;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 180, 255, 0.15),
+        transparent 40%,
+        transparent 60%,
+        rgba(0, 212, 170, 0.1)
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    @keyframes cardReveal {
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.9rem;
+      background: rgba(0, 212, 170, 0.08);
+      border: 1px solid rgba(0, 212, 170, 0.15);
+      border-radius: 100px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 2rem;
+    }
+
+    .badge-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--teal);
+      border-radius: 50%;
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 212, 170, 0.4); }
+      50% { opacity: 0.6; box-shadow: 0 0 0 4px rgba(0, 212, 170, 0); }
+    }
+
+    .logo {
+      font-size: clamp(2.5rem, 7vw, 3.5rem);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .logo-accent { font-weight: 800; color: var(--accent); }
+    .logo-muted { font-weight: 300; color: var(--muted); }
+
+    .tagline {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    /* Separator */
+    .sep {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .sep-line {
+      flex: 1;
+      height: 1px;
+      background: var(--glass-border);
+    }
+
+    .sep-text {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.5;
+    }
+
+    /* Email input */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .input-wrap input::placeholder {
+      color: rgba(138, 143, 158, 0.5);
+    }
+
+    .input-wrap input:focus {
+      border-color: rgba(0, 180, 255, 0.3);
+      box-shadow: 0 0 0 3px rgba(0, 180, 255, 0.05);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 0.9rem;
+      background: linear-gradient(135deg, var(--accent), #0090dd);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(0, 180, 255, 0.25);
+    }
+
+    .submit-btn:hover::before {
+      opacity: 1;
+    }
+
+    /* Footer inside card */
+    .card-footer {
+      margin-top: 2rem;
+      font-size: 0.7rem;
+      color: rgba(138, 143, 158, 0.4);
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 2.5rem 1.8rem;
+        border-radius: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="card">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Coming Soon
+    </div>
+
+    <div class="logo">
+      <span class="logo-accent">trader</span><span class="logo-muted">lytic</span>
+    </div>
+
+    <p class="tagline">Elevate Your Trading with Analytics</p>
+
+    <div class="sep">
+      <div class="sep-line"></div>
+      <span class="sep-text">Join the waitlist</span>
+      <div class="sep-line"></div>
+    </div>
+
+    <form class="form-group" onsubmit="event.preventDefault()">
+      <div class="input-wrap">
+        <input type="email" placeholder="your@email.com" autocomplete="email">
+      </div>
+      <button type="submit" class="submit-btn">Get Early Access</button>
+    </form>
+
+    <p class="card-footer">No spam. We'll only notify you when we launch.</p>
+  </div>
+</body>
+</html>

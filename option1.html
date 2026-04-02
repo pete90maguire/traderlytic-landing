@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traderlytic — Elevate Your Trading with Analytics</title>
+  <meta name="description" content="Professional trading journal and analytics platform. Coming soon.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0c0d12;
+      --accent: #00b4ff;
+      --teal: #00d4aa;
+      --muted: #8a8f9e;
+      --text: #e2e4e9;
+      --dim: #2a2d38;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Aurora background */
+    .aurora {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .aurora::before,
+    .aurora::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.35;
+      animation: auroraFloat 12s ease-in-out infinite alternate;
+    }
+
+    .aurora::before {
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse, var(--accent), transparent 70%);
+      top: -15%;
+      left: -10%;
+      animation-delay: 0s;
+    }
+
+    .aurora::after {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse, var(--teal), transparent 70%);
+      bottom: -20%;
+      right: -10%;
+      animation-delay: -6s;
+    }
+
+    .aurora-mid {
+      position: absolute;
+      width: 500px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(0, 180, 255, 0.15), transparent 70%);
+      border-radius: 50%;
+      filter: blur(100px);
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: auroraPulse 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes auroraFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, -30px) scale(1.1); }
+      100% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+
+    @keyframes auroraPulse {
+      0% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.3); }
+    }
+
+    /* Noise overlay */
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+      pointer-events: none;
+    }
+
+    /* Content */
+    .content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+      max-width: 680px;
+    }
+
+    .logo {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    }
+
+    .logo-accent {
+      font-weight: 800;
+      color: var(--accent);
+      text-shadow: 0 0 60px rgba(0, 180, 255, 0.3);
+    }
+
+    .logo-muted {
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 0 auto 1.5rem;
+      opacity: 0;
+      animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    }
+
+    .tagline {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 300;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    }
+
+    .tagline em {
+      font-style: normal;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .coming-soon {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+    }
+
+    /* Email form */
+    .waitlist {
+      display: flex;
+      gap: 0;
+      max-width: 420px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 180, 255, 0.15);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      opacity: 0;
+      animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+      transition: border-color 0.3s ease;
+    }
+
+    .waitlist:focus-within {
+      border-color: rgba(0, 180, 255, 0.4);
+      box-shadow: 0 0 30px rgba(0, 180, 255, 0.08);
+    }
+
+    .waitlist input {
+      flex: 1;
+      padding: 0.9rem 1.2rem;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
+    .waitlist input::placeholder {
+      color: var(--dim);
+    }
+
+    .waitlist button {
+      padding: 0.9rem 1.6rem;
+      background: var(--accent);
+      border: none;
+      color: var(--bg);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .waitlist button:hover {
+      background: #33c3ff;
+    }
+
+    /* Footer hint */
+    .footer {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      font-size: 0.7rem;
+      color: var(--dim);
+      letter-spacing: 0.08em;
+      opacity: 0;
+      animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards;
+    }
+
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      .waitlist {
+        flex-direction: column;
+        border-radius: 12px;
+      }
+      .waitlist button {
+        border-top: 1px solid rgba(0, 180, 255, 0.1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="aurora">
+    <div class="aurora-mid"></div>
+  </div>
+  <div class="noise"></div>
+
+  <div class="content">
+    <div class="logo">
+      <span class="logo-accent">trader</span><span class="logo-muted">lytic</span>
+    </div>
+    <div class="divider"></div>
+    <p class="tagline">Elevate Your Trading with <em>Analytics</em></p>
+    <p class="coming-soon">Coming Soon</p>
+    <form class="waitlist" onsubmit="event.preventDefault()">
+      <input type="email" placeholder="Enter your email for early access" autocomplete="email">
+      <button type="submit">Notify Me</button>
+    </form>
+  </div>
+
+  <div class="footer">Professional trading journal & analytics platform</div>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traderlytic — Favicon Concepts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0c0d12;
+      font-family: 'Outfit', sans-serif;
+      color: #e8eaef;
+      padding: 3rem;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: #8a8f9e;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      font-size: 0.75rem;
+      color: rgba(138,143,158,0.4);
+      margin-bottom: 3rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid #1a1c25;
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .card-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #00b4ff;
+    }
+    .card-desc {
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: #8a8f9e;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .preview-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .preview-row .size-label {
+      font-size: 0.55rem;
+      color: rgba(138,143,158,0.3);
+      text-align: center;
+    }
+    .preview-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    /* Fake browser tab for context */
+    .tab-mock {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #1a1c25;
+      padding: 0.4rem 1rem 0.4rem 0.6rem;
+      border-radius: 6px 6px 0 0;
+      font-size: 0.6rem;
+      color: #8a8f9e;
+    }
+    .tab-mock svg {
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Favicon Concepts — Traderlytic</h1>
+  <p class="subtitle">Shown at 16px (tab), 32px, and 64px. Each with a mock browser tab preview.</p>
+
+  <div class="grid">
+
+    <!-- 1. Edge Ring — clean circle -->
+    <div class="card">
+      <div class="card-label">01 — Edge Ring</div>
+      <div class="preview-row">
+        <div class="preview-item">
+          <svg width="16" height="16" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="9" fill="none" stroke="#00b4ff" stroke-width="2.5"/></svg>
+          <span class="size-label">16px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="9" fill="none" stroke="#00b4ff" stroke-width="2.5"/></svg>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="64" height="64" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="9" fill="none" stroke="#00b4ff" stroke-width="2.5"/></svg>
+          <span class="size-label">64px</span>
+        </div>
+      </div>
+      <div class="tab-mock">
+        <svg width="14" height="14" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="9" fill="none" stroke="#00b4ff" stroke-width="2.5"/></svg>
+        Traderlytic
+      </div>
+      <div class="card-desc">Pure circle. Minimal, ties to the edge finder ring. Premium and clean.</div>
+    </div>
+
+    <!-- 2. Edge Ring with Notch — broken circle suggesting data/progress -->
+    <div class="card">
+      <div class="card-label">02 — Edge Ring Notch</div>
+      <div class="preview-row">
+        <div class="preview-item">
+          <svg width="16" height="16" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="9" fill="none" stroke="#00b4ff" stroke-width="2.5" stroke-dasharray="48 8.5" stroke-linecap="round" transform="rotate(-90 16 16)"/></svg>
+          <span class="size-label">16px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="9" fill="none" stroke="#00b4ff" stroke-width="2.5" stroke-dasharray="48 8.5" stroke-linecap="round" transform="rotate(-90 16 16)"/></svg>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="64" height="64" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="9" fill="none" stroke="#00b4ff" stroke-width="2.5" stroke-dasharray="48 8.5" stroke-linecap="round" transform="rotate(-90 16 16)"/></svg>
+          <span class="size-label">64px</span>
+        </div>
+      </div>
+      <div class="tab-mock">
+        <svg width="14" height="14" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="9" fill="none" stroke="#00b4ff" stroke-width="2.5" stroke-dasharray="48 8.5" stroke-linecap="round" transform="rotate(-90 16 16)"/></svg>
+        Traderlytic
+      </div>
+      <div class="card-desc">Broken circle — suggests a progress ring or donut chart. More dynamic than a full circle.</div>
+    </div>
+
+    <!-- 3. T Monogram -->
+    <div class="card">
+      <div class="card-label">03 — T Monogram</div>
+      <div class="preview-row">
+        <div class="preview-item">
+          <svg width="16" height="16" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><text x="16" y="22" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="18" fill="#00b4ff">T</text></svg>
+          <span class="size-label">16px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><text x="16" y="22" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="18" fill="#00b4ff">T</text></svg>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="64" height="64" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><text x="16" y="22" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="18" fill="#00b4ff">T</text></svg>
+          <span class="size-label">64px</span>
+        </div>
+      </div>
+      <div class="tab-mock">
+        <svg width="14" height="14" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><text x="16" y="22" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="18" fill="#00b4ff">T</text></svg>
+        Traderlytic
+      </div>
+      <div class="card-desc">Bold T in brand weight. Simple, recognizable, matches the logo typography.</div>
+    </div>
+
+    <!-- 4. T in Ring -->
+    <div class="card">
+      <div class="card-label">04 — T in Ring</div>
+      <div class="preview-row">
+        <div class="preview-item">
+          <svg width="16" height="16" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="11" fill="none" stroke="#00b4ff" stroke-width="1.5" opacity="0.3"/><text x="16" y="21.5" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="15" fill="#00b4ff">T</text></svg>
+          <span class="size-label">16px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="11" fill="none" stroke="#00b4ff" stroke-width="1.5" opacity="0.3"/><text x="16" y="21.5" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="15" fill="#00b4ff">T</text></svg>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="64" height="64" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="11" fill="none" stroke="#00b4ff" stroke-width="1.5" opacity="0.3"/><text x="16" y="21.5" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="15" fill="#00b4ff">T</text></svg>
+          <span class="size-label">64px</span>
+        </div>
+      </div>
+      <div class="tab-mock">
+        <svg width="14" height="14" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="11" fill="none" stroke="#00b4ff" stroke-width="1.5" opacity="0.3"/><text x="16" y="21.5" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="15" fill="#00b4ff">T</text></svg>
+        Traderlytic
+      </div>
+      <div class="card-desc">Combines both ideas — T monogram inside the edge ring. Layered but still clean.</div>
+    </div>
+
+    <!-- 5. Chart Pulse -->
+    <div class="card">
+      <div class="card-label">05 — Chart Pulse</div>
+      <div class="preview-row">
+        <div class="preview-item">
+          <svg width="16" height="16" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><polyline points="5,20 10,18 14,22 18,12 22,16 26,8" fill="none" stroke="#00b4ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="26" cy="8" r="2" fill="#00b4ff"/></svg>
+          <span class="size-label">16px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><polyline points="5,20 10,18 14,22 18,12 22,16 26,8" fill="none" stroke="#00b4ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="26" cy="8" r="2" fill="#00b4ff"/></svg>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="64" height="64" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><polyline points="5,20 10,18 14,22 18,12 22,16 26,8" fill="none" stroke="#00b4ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="26" cy="8" r="2" fill="#00b4ff"/></svg>
+          <span class="size-label">64px</span>
+        </div>
+      </div>
+      <div class="tab-mock">
+        <svg width="14" height="14" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><polyline points="5,20 10,18 14,22 18,12 22,16 26,8" fill="none" stroke="#00b4ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="26" cy="8" r="2" fill="#00b4ff"/></svg>
+        Traderlytic
+      </div>
+      <div class="card-desc">Abstracted equity curve with live dot. Instantly reads as trading/analytics.</div>
+    </div>
+
+    <!-- 6. Ring + Pulse -->
+    <div class="card">
+      <div class="card-label">06 — Ring + Pulse</div>
+      <div class="preview-row">
+        <div class="preview-item">
+          <svg width="16" height="16" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="11" fill="none" stroke="#00b4ff" stroke-width="1.5" opacity="0.2"/><polyline points="8,18 12,17 16,20 20,12 24,14" fill="none" stroke="#00b4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="size-label">16px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="11" fill="none" stroke="#00b4ff" stroke-width="1.5" opacity="0.2"/><polyline points="8,18 12,17 16,20 20,12 24,14" fill="none" stroke="#00b4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="64" height="64" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="11" fill="none" stroke="#00b4ff" stroke-width="1.5" opacity="0.2"/><polyline points="8,18 12,17 16,20 20,12 24,14" fill="none" stroke="#00b4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="size-label">64px</span>
+        </div>
+      </div>
+      <div class="tab-mock">
+        <svg width="14" height="14" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="11" fill="none" stroke="#00b4ff" stroke-width="1.5" opacity="0.2"/><polyline points="8,18 12,17 16,20 20,12 24,14" fill="none" stroke="#00b4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Traderlytic
+      </div>
+      <div class="card-desc">Edge ring with a mini equity curve inside. Best of both worlds — ring identity + trading context.</div>
+    </div>
+
+    <!-- 7. Gradient Ring -->
+    <div class="card">
+      <div class="card-label">07 — Gradient Ring</div>
+      <div class="preview-row">
+        <div class="preview-item">
+          <svg width="16" height="16" viewBox="0 0 32 32"><defs><linearGradient id="gr7" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00b4ff"/><stop offset="100%" stop-color="#00d4aa"/></linearGradient></defs><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="9" fill="none" stroke="url(#gr7)" stroke-width="2.5"/></svg>
+          <span class="size-label">16px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="32" height="32" viewBox="0 0 32 32"><defs><linearGradient id="gr7b" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00b4ff"/><stop offset="100%" stop-color="#00d4aa"/></linearGradient></defs><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="9" fill="none" stroke="url(#gr7b)" stroke-width="2.5"/></svg>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="64" height="64" viewBox="0 0 32 32"><defs><linearGradient id="gr7c" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00b4ff"/><stop offset="100%" stop-color="#00d4aa"/></linearGradient></defs><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="9" fill="none" stroke="url(#gr7c)" stroke-width="2.5"/></svg>
+          <span class="size-label">64px</span>
+        </div>
+      </div>
+      <div class="tab-mock">
+        <svg width="14" height="14" viewBox="0 0 32 32"><defs><linearGradient id="gr7d" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00b4ff"/><stop offset="100%" stop-color="#00d4aa"/></linearGradient></defs><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="9" fill="none" stroke="url(#gr7d)" stroke-width="2.5"/></svg>
+        Traderlytic
+      </div>
+      <div class="card-desc">Edge ring with blue→teal gradient. Uses both brand colors. Subtle premium feel.</div>
+    </div>
+
+    <!-- 8. Filled Dot -->
+    <div class="card">
+      <div class="card-label">08 — Solid Dot</div>
+      <div class="preview-row">
+        <div class="preview-item">
+          <svg width="16" height="16" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="8" fill="#00b4ff"/></svg>
+          <span class="size-label">16px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="8" fill="#00b4ff"/></svg>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="64" height="64" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="8" fill="#00b4ff"/></svg>
+          <span class="size-label">64px</span>
+        </div>
+      </div>
+      <div class="tab-mock">
+        <svg width="14" height="14" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="8" fill="#00b4ff"/></svg>
+        Traderlytic
+      </div>
+      <div class="card-desc">Ultra minimal. Just the blue dot — like a live indicator. Maximum restraint.</div>
+    </div>
+
+    <!-- 9. Crosshair / Target -->
+    <div class="card">
+      <div class="card-label">09 — Crosshair</div>
+      <div class="preview-row">
+        <div class="preview-item">
+          <svg width="16" height="16" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="8" fill="none" stroke="#00b4ff" stroke-width="2"/><circle cx="16" cy="16" r="2" fill="#00b4ff"/><line x1="16" y1="5" x2="16" y2="8" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="24" x2="16" y2="27" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="16" x2="8" y2="16" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/><line x1="24" y1="16" x2="27" y2="16" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="size-label">16px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="8" fill="none" stroke="#00b4ff" stroke-width="2"/><circle cx="16" cy="16" r="2" fill="#00b4ff"/><line x1="16" y1="5" x2="16" y2="8" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="24" x2="16" y2="27" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="16" x2="8" y2="16" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/><line x1="24" y1="16" x2="27" y2="16" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="64" height="64" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="8" fill="none" stroke="#00b4ff" stroke-width="2"/><circle cx="16" cy="16" r="2" fill="#00b4ff"/><line x1="16" y1="5" x2="16" y2="8" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="24" x2="16" y2="27" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="16" x2="8" y2="16" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/><line x1="24" y1="16" x2="27" y2="16" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="size-label">64px</span>
+        </div>
+      </div>
+      <div class="tab-mock">
+        <svg width="14" height="14" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><circle cx="16" cy="16" r="8" fill="none" stroke="#00b4ff" stroke-width="2"/><circle cx="16" cy="16" r="2" fill="#00b4ff"/><line x1="16" y1="5" x2="16" y2="8" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="24" x2="16" y2="27" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="16" x2="8" y2="16" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/><line x1="24" y1="16" x2="27" y2="16" stroke="#00b4ff" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Traderlytic
+      </div>
+      <div class="card-desc">Targeting crosshair — precision analytics, finding your edge. More detailed but distinct.</div>
+    </div>
+
+    <!-- 10. Abstract Bars -->
+    <div class="card">
+      <div class="card-label">10 — Signal Bars</div>
+      <div class="preview-row">
+        <div class="preview-item">
+          <svg width="16" height="16" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><rect x="7" y="18" width="4" height="8" rx="1" fill="#00b4ff" opacity="0.4"/><rect x="14" y="13" width="4" height="13" rx="1" fill="#00b4ff" opacity="0.6"/><rect x="21" y="6" width="4" height="20" rx="1" fill="#00b4ff"/></svg>
+          <span class="size-label">16px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><rect x="7" y="18" width="4" height="8" rx="1" fill="#00b4ff" opacity="0.4"/><rect x="14" y="13" width="4" height="13" rx="1" fill="#00b4ff" opacity="0.6"/><rect x="21" y="6" width="4" height="20" rx="1" fill="#00b4ff"/></svg>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="preview-item">
+          <svg width="64" height="64" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><rect x="7" y="18" width="4" height="8" rx="1" fill="#00b4ff" opacity="0.4"/><rect x="14" y="13" width="4" height="13" rx="1" fill="#00b4ff" opacity="0.6"/><rect x="21" y="6" width="4" height="20" rx="1" fill="#00b4ff"/></svg>
+          <span class="size-label">64px</span>
+        </div>
+      </div>
+      <div class="tab-mock">
+        <svg width="14" height="14" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c0d12"/><rect x="7" y="18" width="4" height="8" rx="1" fill="#00b4ff" opacity="0.4"/><rect x="14" y="13" width="4" height="13" rx="1" fill="#00b4ff" opacity="0.6"/><rect x="21" y="6" width="4" height="20" rx="1" fill="#00b4ff"/></svg>
+        Traderlytic
+      </div>
+      <div class="card-desc">Rising bars with opacity gradient — growth, analytics, performance. Reads well at all sizes.</div>
+    </div>
+
+  </div>
+</body>
+</html>
